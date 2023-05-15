@@ -41,7 +41,7 @@ fetch(video_http + new URLSearchParams({
     key:api_key,
     part:'snippet',
     chart:'mostPopular',
-    maxResults:50,
+    maxResults:100,
     regionCode:'IN',
 }))
 .then(res=> res.json())
@@ -64,15 +64,14 @@ fetch(channel_http + new URLSearchParams({
 }))
 .then(res=> res.json())
 .then(data=>{
-    // console.log(data)
+   
     video_data.channelThumbnail = data.items[0].snippet.thumbnails.default.url;
    
    
    
     makeVideoCard(video_data);
-
-
     console.log(video_data)
+   
 })
 }
 
@@ -84,9 +83,11 @@ const makeVideoCard = (data) =>{
     <img src="${data.snippet.thumbnails.maxres.url}" class="thumbnail" alt="">
     <div class="content flex-div">
         <img src="${data.channelThumbnail}" class="channel-icon" alt="">
+        
         <div class="info">
             <h4 class="title">${data.snippet.title}</h4>
-              <p class="channel-name">${data.snippet.channelTitle}</p>
+            <p class="channel-name">${data.snippet.channelTitle}</p>
+              
         </div>
     </div>
 </div>
@@ -95,6 +96,10 @@ const makeVideoCard = (data) =>{
 
         
 }
+
+
+        
+
 
 
 
